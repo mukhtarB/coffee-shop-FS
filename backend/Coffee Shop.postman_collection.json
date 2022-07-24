@@ -1,0 +1,362 @@
+{
+	"info": {
+		"_postman_id": "f0769309-2dba-4bee-b1ce-d1c924aa4cca",
+		"name": "Coffee Shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14729774"
+	},
+	"item": [
+		{
+			"name": "Barista",
+			"item": [
+				{
+					"name": "/drinks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/drinks",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"drinks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks-detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/drinks-detail",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"drinks-detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Revitalize 22\",\r\n    \"recipe\": [{\r\n        \"color\": \"orange\",\r\n        \"name\": \"Revitalize renewed\",\r\n        \"parts\": 1\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/drinks",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"drinks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks/<id>",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Revitalize\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/drinks/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"drinks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks/<id>",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/drinks/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"drinks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlN0WUgzSkVFdFQ3YmZKUEozYzBVbiJ9.eyJpc3MiOiJodHRwczovL2Rldi11dGZtdjNoci51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjJkZDhiMzJhNTU5Zjg2ZTM2Nzc0NzI3IiwiYXVkIjoiZHJpbmtzIiwiaWF0IjoxNjU4Njg2MzY2LCJleHAiOjE2NTg2OTM1NjYsImF6cCI6IkRlUWs4akZUTHBBdDFNUXZLUWhrZkFySG9wUWpKaktQIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6ZHJpbmstZGV0YWlscyJdfQ.rH5NLzo4ja7DxZA33UOkgK9OdAvcDYYNC5XuZFLKXu_IjABMxCtXnMsoWGF18hwG1GtC41_4zjJrFzl8SP-henKXS-sUfB_zwNBcylSClgIocxMc0xrDpdP3VPwSG4oPGZ909qMrnCpNfJK80QBE2gLnUFyiJgQIM4jR9NmD1Iu9NOzSXgodHMqxJBZjK_3VCKpx8lU9GZ7ADdLGAFlNGir0HBIV4DqTxQmAylTC9e_idqBT_fGzJNIjtIinUVbaj7nxFjaxWzJpnGxruwowGmR85YFQ7g4fMKVEex2taXbataIpCBy6WvUi15UzDJGwTVf8IMsSaSBPwLaGT2xewA",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Manager",
+			"item": [
+				{
+					"name": "/drinks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/drinks",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"drinks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks-detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/drinks-detail",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"drinks-detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Revitalize 22\",\r\n    \"recipe\": [{\r\n        \"color\": \"orange\",\r\n        \"name\": \"Revitalize renewed\",\r\n        \"parts\": 1\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/drinks",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"drinks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks/<id>",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Revitalize\",\r\n    \"recipe\": \"Healthy Natual Coffee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/drinks/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"drinks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks/<id>",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Revitalize\",\r\n    \"recipe\": \"Healthy Natual Coffee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/drinks/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"drinks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlN0WUgzSkVFdFQ3YmZKUEozYzBVbiJ9.eyJpc3MiOiJodHRwczovL2Rldi11dGZtdjNoci51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjJkZDVhYzAzNWM5OWRjOGI4YzY3Yjc5IiwiYXVkIjoiZHJpbmtzIiwiaWF0IjoxNjU4Njg1MDk4LCJleHAiOjE2NTg2OTIyOTgsImF6cCI6IkRlUWs4akZUTHBBdDFNUXZLUWhrZkFySG9wUWpKaktQIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWw6ZHJpbmsiLCJnZXQ6ZHJpbmstZGV0YWlscyIsInBvc3Q6ZHJpbmsiLCJ1cGRhdGU6ZHJpbmsiXX0.LCtQgqjyiBB86xUwrGchXmSW8upXMS8F5Md2YkZ6uANYCnb6kvldF-fsUpRlnF55a9HxAHO7DteQhftDKzIH5o9Gdp1qd9EtzCj-92RvsJ4nUlHzGcoHLOi8Co9ClY0VBjSWHYzPNjXwX-tWR94gFPyqGpDrY5xwcV3daqQfGaRDiThkIim-Fq3rrJCPGtdy5slr4f-UIYzbg5u_UWFp5IAH6wchEnDHpytjG_vMeNDY_4mDyM7InBOFwiAsORZMscjLGxzU4ZhKihA1ipEMb5bZbEh9rqrzwIeGqOemVDqMEKUdXI9ks5_mPgrfHjGpb7qy4nX2Wc8FllyNIwmUEQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
