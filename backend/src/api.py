@@ -63,7 +63,7 @@ def get_drinks():
 '''
 @app.route('/drinks-detail', methods=['GET'])
 @requires_auth('get:drink-details')
-def get_drink_details():
+def get_drink_details(payload):
     try:
         drink_queryset = Drink.query
 
@@ -86,7 +86,7 @@ def get_drink_details():
 '''
 @app.route('/drinks', methods=['POST'])
 @requires_auth('post:drink')
-def create_drink():
+def create_drink(payload):
     """Create a drink"""
 
     body = request.get_json()
@@ -125,7 +125,7 @@ def create_drink():
 '''
 @app.route('/drinks/<int:id>', methods=['PATCH'])
 @requires_auth('update:drink')
-def update_drink(id):
+def update_drink(payload, id):
     """Update a drink"""
 
     data = request.get_json()
@@ -163,7 +163,7 @@ def update_drink(id):
 '''
 @app.route('/drinks/<int:id>', methods=['DELETE'])
 @requires_auth('del:drink')
-def delete_drink(id):
+def delete_drink(payload, id):
     """Delete a drink"""
 
     drink = Drink.query.filter(Drink.id == id).one_or_none()
@@ -235,7 +235,7 @@ def not_allowed(error):
     }), 405
 
 @app.errorhandler(500)
-def forbidden(error):
+def server_error(error):
     return jsonify({
         'success': False,
         'error': 500,
