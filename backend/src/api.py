@@ -85,7 +85,7 @@ def get_drink_details():
         or appropriate status code indicating reason for failure
 '''
 @app.route('/drink', methods=['POST'])
-# @requires_auth('post:drink')
+@requires_auth('post:drink')
 def create_drink():
     """Create a drink"""
 
@@ -123,6 +123,11 @@ def create_drink():
     returns status code 200 and json {"success": True, "drinks": drink} where drink an array containing only the updated drink
         or appropriate status code indicating reason for failure
 '''
+@app.route('/drink/<int:id>', methods=['PATCH'])
+@requires_auth('update:drink')
+def update_drink(id):
+    """Update a drink"""
+    pass
 
 
 '''
