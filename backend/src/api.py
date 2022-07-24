@@ -25,7 +25,8 @@ db_drop_and_create_all()
 @app.route('/', methods=['GET'])
 def home():
     return jsonify({
-        'message': "Home Routes"
+        'success': True,
+        'message': "Home Route"
     })
 
 # ROUTES
