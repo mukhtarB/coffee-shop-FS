@@ -184,6 +184,13 @@ def forbidden(error):
         'message': 'Forbidden',
     }), 403
 
+@app.errorhandler(AuthError)
+def process_AuthError(error):
+    response = jsonify(error.error)
+    response.status_code = error.status_code
+
+    return response
+
 
 if __name__ == "__main__":
     app.debug = True
