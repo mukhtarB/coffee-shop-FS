@@ -62,7 +62,7 @@ def get_drinks():
         or appropriate status code indicating reason for failure
 '''
 @app.route('/drink-details', methods=['GET'])
-# @requires_auth('get:drink-details')
+@requires_auth('get:drink-details')
 def get_drink_details():
     try:
         drink_queryset = Drink.query
@@ -156,7 +156,7 @@ def not_found(error):
         'message': 'resource not found',
     }), 404
 
- @app.errorhandler(405)
+@app.errorhandler(405)
 def not_allowed(error):
     return jsonify({
         'success': False,
@@ -168,6 +168,22 @@ def not_allowed(error):
 @TODO implement error handler for AuthError
     error handler should conform to general task above
 '''
+@app.errorhandler(401)
+def unauthorized(error):
+    return jsonify({
+        'success': False,
+        'error': 401,
+        'message': 'Unauthorized',
+    }), 401
+
+@app.errorhandler(403)
+def forbidden(error):
+    return jsonify({
+        'success': False,
+        'error': 403,
+        'message': 'Forbidden',
+    }), 403
+
 
 if __name__ == "__main__":
     app.debug = True
