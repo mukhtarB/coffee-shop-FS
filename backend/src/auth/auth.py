@@ -7,7 +7,7 @@ from urllib.request import urlopen
 from dotenv import load_dotenv
 load_dotenv()
 
-AUTH0_DOMAIN = os.getenv('AUTH0_DOMAIN')
+AUTH0_DOMAIN = os.getenv('DOMAIN')
 ALGORITHMS = [os.getenv('ALGORITHM')]
 API_AUDIENCE = os.getenv('AUDIENCE')
 
@@ -110,7 +110,9 @@ def verify_decode_jwt(token):
     """Validate token recieved with the auth0 provider
     """
     # GET THE PUBLIC KEY FROM AUTH0
-    jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
+    url = f'https://{AUTH0_DOMAIN}/.well-known/jwks.json'
+    print(url)
+    jsonurl = urlopen(url)
     jwks = json.loads(jsonurl.read())
 
     # GET THE DATA IN THE HEADER
@@ -188,7 +190,7 @@ def requires_auth(permission=''):
             try:
                 payload = verify_decode_jwt(token)
             except:
-                abort(401)
+                abort(403)
 
             check_permissions(permission, payload)
             return f(payload, *args, **kwargs)
