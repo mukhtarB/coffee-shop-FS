@@ -43,13 +43,15 @@ def home():
 def get_drinks():
     """Get all drinks, permissible to all"""
 
-    drink_queryset = Drink.query
+    try:
+        drink_queryset = Drink.query
 
-    return jsonify({
-        'success': True,
-        'drinks': [drink.short() for drink in drink_queryset]
-    })
-
+        return jsonify({
+            'success': True,
+            'drinks': [drink.short() for drink in drink_queryset]
+        })
+    except:
+        abort(500)
 
 '''
 @TODO implement endpoint
