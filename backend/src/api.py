@@ -72,7 +72,7 @@ def get_drink_details():
             'drinks': [drink.long() for drink in drink_queryset]
         })
     except:
-        abort(422)
+        abort(500)
 
 
 '''
@@ -130,12 +130,19 @@ def unprocessable(error):
 @TODO implement error handlers using the @app.errorhandler(error) decorator
     each error handler should return (with approprate messages):
              jsonify({
-                    "success": False,
-                    "error": 404,
-                    "message": "resource not found"
-                    }), 404
+                "success": False,
+                "error": 404,
+                "message": "resource not found"
+                }), 404
 
 '''
+@app.errorhandler(400)
+def bad_request(error):
+    return jsonify({
+        'success': False,
+        'error': 400,
+        'message': 'bad request',
+    }), 400
 
 '''
 @TODO implement error handler for 404
