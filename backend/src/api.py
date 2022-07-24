@@ -24,6 +24,7 @@ db_drop_and_create_all()
 
 @app.route('/', methods=['GET'])
 def home():
+    """Home Route"""
     return jsonify({
         'success': True,
         'message': "Home Route"
@@ -38,6 +39,16 @@ def home():
     returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
         or appropriate status code indicating reason for failure
 '''
+@app.route('/drinks', methods=['GET'])
+def get_drinks():
+    """Get all drinks, permissible to all"""
+
+    drink_queryset = Drink.query
+
+    return jsonify({
+        'success': True,
+        'drinks': [drink.short() for drink in drink_queryset]
+    })
 
 
 '''
