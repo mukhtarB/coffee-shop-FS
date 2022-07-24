@@ -84,6 +84,32 @@ def get_drink_details():
     returns status code 200 and json {"success": True, "drinks": drink} where drink an array containing only the newly created drink
         or appropriate status code indicating reason for failure
 '''
+@app.route('/drink', methods=['POST'])
+# @requires_auth('post:drink')
+def create_drink():
+    """Create a drink"""
+
+    body = request.get_json()
+
+    recipe = body.get('recipe', None)
+    title = body.get('title', None)
+
+    if not recipe or not title: abort(400)
+
+    try:
+        drink = Drink(
+            title=title,
+            recipe=json.dumps(recipe)
+        )
+
+        drink.insert()
+
+        return jsonify({
+            'success': True,
+            'created': drink.long()
+        }), 201
+    except:
+        abort(422)
 
 
 '''
@@ -163,6 +189,14 @@ def not_allowed(error):
         'error': 405,
         'message': 'method not allowed',
     }), 405
+
+@app.errorhandler(500)
+def forbidden(error):
+    return jsonify({
+        'success': False,
+        'error': 500,
+        'message': 'Internal Server Error',
+    }), 500
 
 '''
 @TODO implement error handler for AuthError
