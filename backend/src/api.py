@@ -127,7 +127,28 @@ def create_drink():
 @requires_auth('update:drink')
 def update_drink(id):
     """Update a drink"""
-    pass
+
+    data = request.get_json()
+    if not data: abort (400)
+
+    drink = Drink.query.filter(Drink.id == id).one_or_none()
+    if not drink: abort(404)
+
+    if 'title' in data:
+        drink.title = data['title']
+
+    if 'recipe' in data:
+        drink.recipe = json.dumps(data['recipe'])
+
+    try:
+        drink.update()
+
+        return jsonify({
+            'success': True,
+            'data': drink.long()
+        }), 200
+    except:
+        abort(422)
 
 
 '''
