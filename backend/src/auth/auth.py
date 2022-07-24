@@ -111,7 +111,6 @@ def verify_decode_jwt(token):
     """
     # GET THE PUBLIC KEY FROM AUTH0
     url = f'https://{AUTH0_DOMAIN}/.well-known/jwks.json'
-    print(url)
     jsonurl = urlopen(url)
     jwks = json.loads(jsonurl.read())
 
