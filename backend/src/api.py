@@ -41,7 +41,31 @@ def home():
 '''
 @app.route('/drinks', methods=['GET'])
 def get_drinks():
-    """Get all drinks, permissible to all"""
+    """
+    Get all drinks, permissible to all
+    ---
+    tags:
+      - Coffee Shop API
+    responses:
+        500:
+            description: Internal Server Error
+        200:
+            description: All drink with extra details enabled
+            schema:
+                success: true
+                drinks:
+                    id:
+                        type: int
+                        description: object identifier
+                    title:
+                        type: string
+                        description: The name of the drink
+                    recipe:
+                        type: array
+                        description: The recipe details
+                        items:
+                            type: objects
+    """
 
     try:
         drink_queryset = Drink.query
@@ -64,6 +88,37 @@ def get_drinks():
 @app.route('/drinks-detail', methods=['GET'])
 @requires_auth('get:drink-details')
 def get_drink_details(payload):
+    """
+    Get all drinks in detail
+    ---
+    tags:
+      - Coffee Shop API
+    Args:
+      - name: payload
+        in: Auth
+        type: string
+        required: true
+        description: The jwt payload
+    responses:
+        500:
+            description: Internal Server Error
+        200:
+            description: All drink with extra details enabled
+            schema:
+                success: true
+                created:
+                    id:
+                        type: int
+                        description: object identifier
+                    title:
+                        type: string
+                        description: The name of the drink
+                    recipe:
+                        type: array
+                        description: The recipe details
+                        items:
+                            type: objects
+    """
     try:
         drink_queryset = Drink.query
 
@@ -87,7 +142,37 @@ def get_drink_details(payload):
 @app.route('/drinks', methods=['POST'])
 @requires_auth('post:drink')
 def create_drink(payload):
-    """Create a drink"""
+    """
+    Create a drink
+    ---
+    tags:
+      - Coffee Shop API
+    Args:
+      - name: payload
+        in: Auth
+        type: string
+        required: true
+        description: The jwt payload
+    responses:
+        422:
+            description: Error Unprocessible Entity
+        200:
+            description: A drink with extra details enabled
+            schema:
+                success: true
+                created:
+                    id:
+                        type: int
+                        description: object identifier
+                    title:
+                        type: string
+                        description: The name of the drink
+                    recipe:
+                        type: array
+                        description: The recipe details
+                        items:
+                            type: objects
+    """
 
     body = request.get_json()
 
@@ -126,7 +211,43 @@ def create_drink(payload):
 @app.route('/drinks/<int:id>', methods=['PATCH'])
 @requires_auth('update:drink')
 def update_drink(payload, id):
-    """Update a drink"""
+    """
+    Update a drink
+    ---
+    tags:
+      - Coffee Shop API
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: The object identifier
+    Args:
+      - name: payload
+        in: Auth
+        type: string
+        required: true
+        description: The jwt payload
+    responses:
+        422:
+            description: Error Unprocessible Entity
+        200:
+            description: Updated drink with extra details enabled
+            schema:
+                success: true
+                created:
+                    id:
+                        type: int
+                        description: object identifier
+                    title:
+                        type: string
+                        description: The name of the drink
+                    recipe:
+                        type: array
+                        description: The recipe details
+                        items:
+                            type: objects
+    """
 
     data = request.get_json()
     if not data: abort (400)
@@ -165,7 +286,44 @@ def update_drink(payload, id):
 @app.route('/drinks/<int:id>', methods=['DELETE'])
 @requires_auth('del:drink')
 def delete_drink(payload, id):
-    """Delete a drink"""
+    """
+    Delete a drink
+    ---
+    tags:
+      - Coffee Shop API
+    parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: The object identifier
+    Args:
+      - name: payload
+        in: Auth
+        type: string
+        required: true
+        description: The jwt payload
+    responses:
+        500:
+            description: Internal Server Error
+        200:
+            description: Updated drink with extra details enabled
+            schema:
+                success: true
+                created:
+                    id:
+                        type: int
+                        description: object identifier
+                    title:
+                        type: string
+                        description: The name of the drink
+                    recipe:
+                        type: array
+                        description: The recipe details
+                        items:
+                            type: objects
+    """
+    
 
     drink = Drink.query.filter(Drink.id == id).one_or_none()
 
