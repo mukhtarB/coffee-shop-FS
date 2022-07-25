@@ -138,7 +138,8 @@ def update_drink(payload, id):
         drink.title = data['title']
 
     if 'recipe' in data:
-        drink.recipe = json.dumps(data['recipe'])
+        recipe = data['recipe']
+        drink.recipe = recipe if type(recipe) == str else json.dumps(recipe)
 
     try:
         drink.update()
